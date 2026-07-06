@@ -22,25 +22,26 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 
 /* ══ HEADER ══ */
 .header{
-  background:var(--black);
+  background:var(--white);
   padding:0 32px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:100;
   height:64px;
-  box-shadow:0 2px 20px rgba(0,0,0,0.25);
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+  border-bottom:1px solid var(--border);
 }
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo-wrap{display:flex;align-items:center;gap:12px;}
-.brand-name{font-size:24px;font-weight:900;color:var(--white);letter-spacing:-1px;line-height:1;}
-.brand-tag{font-size:10px;color:rgba(255,255,255,0.45);margin-top:2px;letter-spacing:.5px;}
-.hdiv{width:1px;height:32px;background:rgba(255,255,255,0.12);margin:0 8px;}
-.header-info h2{font-size:14px;font-weight:700;color:var(--white);}
-.header-info p{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}
+.brand-name{font-size:24px;font-weight:900;color:var(--black);letter-spacing:-1px;line-height:1;}
+.brand-tag{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:.5px;}
+.hdiv{width:1px;height:32px;background:var(--border);margin:0 8px;}
+.header-info h2{font-size:14px;font-weight:700;color:var(--black);}
+.header-info p{font-size:11px;color:var(--muted);margin-top:2px;}
 .header-right{display:flex;gap:8px;align-items:center;}
-.pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;font-size:11px;color:rgba(255,255,255,0.6);}
-.pill strong{color:var(--white);font-weight:700;}
-.update-badge{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#34D399;font-weight:600;display:flex;align-items:center;gap:5px;}
-.update-badge::before{content:'';width:6px;height:6px;background:#34D399;border-radius:50%;display:inline-block;}
+.pill{background:rgba(40,40,40,0.06);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:11px;color:var(--muted);}
+.pill strong{color:var(--black);font-weight:700;}
+.update-badge{background:rgba(16,185,129,0.10);border:1px solid rgba(16,185,129,0.25);border-radius:20px;padding:5px 12px;font-size:11px;color:#059669;font-weight:600;display:flex;align-items:center;gap:5px;}
+.update-badge::before{content:'';width:6px;height:6px;background:#059669;border-radius:50%;display:inline-block;}
 
 /* ══ NAV TABS ══ */
 .nav-tabs{
@@ -482,8 +483,8 @@ function iniciarDashboard(user){
   // Mostra nome do usuário no header
   var hr=document.getElementById('headerRight');
   if(hr){
-    var adminBtn=user.role==='admin'?'<button onclick="abrirAdmin()" style="background:#F7C600;color:#282828;border:none;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800;cursor:pointer;">⚙ Admin</button>':'';
-    hr.innerHTML='<div style="display:flex;align-items:center;gap:10px;">'+adminBtn+'<div style="text-align:right;"><div style="font-size:12px;font-weight:700;color:#fff;">'+user.nome+'</div><div style="font-size:10px;color:rgba(255,255,255,0.45);">'+user.cargo+'</div></div><button onclick="doLogout()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px;font-size:11px;color:rgba(255,255,255,0.6);cursor:pointer;">Sair</button></div>';
+    var adminBtn=user.role==='admin'?'<button onclick="abrirAdmin()" style="background:#F7C600;color:#282828;border:none;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(247,198,0,0.3);">⚙ Admin</button>':'';
+    hr.innerHTML='<div style="display:flex;align-items:center;gap:10px;">'+adminBtn+'<div style="text-align:right;"><div style="font-size:12px;font-weight:700;color:#1A1A1A;">'+user.nome+'</div><div style="font-size:10px;color:#6B7280;">'+user.cargo+'</div></div><button onclick="doLogout()" style="background:#F4F5F7;border:1px solid #E4E6EB;border-radius:20px;padding:5px 12px;font-size:11px;color:#6B7280;cursor:pointer;">Sair</button></div>';
   }
   // Força redimensionamento dos gráficos
   setTimeout(function(){window.dispatchEvent(new Event('resize'));},100);
@@ -586,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 06/07/2026 18:11</div>
+    <div class="update-badge">✓ Atualizado 06/07/2026 18:15</div>
     <div class="pill"><strong>159</strong> notas · Junho</div>
   </div>
 </div>
@@ -858,7 +859,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">06/07/2026 18:11</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">06/07/2026 18:15</strong></div>
 </div>
 
 <script>
