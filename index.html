@@ -8,7 +8,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 :root{
-  --yellow:#F7C600;--black:#282828;--white:#FFFFFF;
+  --yellow:#FF6B00;--black:#282828;--white:#FFFFFF;
   --bg:#F2F3F6;--surface:#FFFFFF;--border:#E4E6EB;
   --text:#1A1A1A;--muted:#6B7280;--faint:#9CA3AF;
   --green:#10B981;--red:#EF4444;
@@ -59,7 +59,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
   position:relative;
 }
 .nav-tab.on{color:var(--black);border-bottom-color:var(--yellow);font-weight:700;}
-.nav-tab:hover:not(.on){color:var(--black);background:rgba(247,198,0,0.05);}
+.nav-tab:hover:not(.on){color:var(--black);background:rgba(255,107,0,0.05);}
 
 /* ══ VIEWS ══ */
 .view{display:none;}.view.on{display:block;animation:fadeIn .25s ease;}
@@ -79,16 +79,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
   box-shadow:var(--shadow-sm);
 }
 .kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c49e00,var(--yellow));}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#cc4400,var(--yellow));}
 .kpi.primary{
   background:linear-gradient(135deg,#282828 0%,#3d3d3d 100%);
   border-color:transparent;
   box-shadow:0 8px 32px rgba(40,40,40,0.25);
 }
-.kpi.primary::before{background:linear-gradient(90deg,var(--yellow),#FFD740);}
+.kpi.primary::before{background:linear-gradient(90deg,var(--yellow),#FF8C33);}
 .kpi.primary .kpi-label{color:rgba(255,255,255,0.55);}
 .kpi.primary .kpi-val{color:var(--yellow);font-size:26px;}
-.kpi.primary .kpi-badge{background:rgba(247,198,0,0.15);color:var(--yellow);}
+.kpi.primary .kpi-badge{background:rgba(255,107,0,0.15);color:var(--yellow);}
 .kpi-icon{font-size:22px;margin-bottom:10px;display:block;}
 .kpi-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
 .kpi-val{font-size:22px;font-weight:900;color:var(--black);line-height:1;margin-bottom:8px;letter-spacing:-.5px;}
@@ -96,7 +96,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .b-up{background:rgba(16,185,129,0.10);color:var(--green);}
 .b-down{background:rgba(239,68,68,0.10);color:var(--red);}
 .b-neu{background:rgba(40,40,40,0.07);color:var(--black);}
-.b-yr{background:rgba(247,198,0,0.15);color:#7a6200;}
+.b-yr{background:rgba(255,107,0,0.15);color:#7a3200;}
 
 /* ══ GRIDS ══ */
 .g21{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px;}
@@ -114,7 +114,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .card-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;}
 .tdot{
   width:8px;height:8px;background:var(--yellow);border-radius:50%;flex-shrink:0;
-  box-shadow:0 0 0 3px rgba(247,198,0,0.2);
+  box-shadow:0 0 0 3px rgba(255,107,0,0.2);
 }
 .card-sub{font-size:11px;color:var(--faint);margin-bottom:16px;font-weight:500;}
 .mb20{margin-bottom:20px;}
@@ -129,7 +129,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 .prog-labels .lbl{font-size:12px;font-weight:600;color:var(--black);max-width:175px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .prog-labels .val{font-size:12px;font-weight:800;color:var(--black);}
 .prog-track{background:#F0F0F0;border-radius:6px;height:8px;overflow:hidden;}
-.prog-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#c49e00,var(--yellow));transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.prog-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#cc4400,var(--yellow));transition:width 1.2s cubic-bezier(.4,0,.2,1);}
 
 /* ══ TABLE CARD ══ */
 .tcard{
@@ -157,24 +157,24 @@ thead th{
   text-align:left;padding:12px 14px;
   font-size:10px;font-weight:700;color:var(--muted);
   text-transform:uppercase;letter-spacing:1.2px;
-  background:linear-gradient(to bottom,rgba(247,198,0,0.06),rgba(247,198,0,0.02));
+  background:linear-gradient(to bottom,rgba(255,107,0,0.06),rgba(255,107,0,0.02));
 }
 thead th.num{text-align:right;}
 tbody tr{border-bottom:1px solid #F3F4F6;transition:background .12s;}
 tbody tr:hover{background:#FAFAFA;}
 tbody td{padding:12px 14px;font-size:13px;color:var(--black);}
 tbody td.num{text-align:right;font-weight:700;}
-tbody td.total-col{font-weight:900;color:#8a6200;}
-tfoot tr{border-top:2px solid var(--yellow);background:rgba(247,198,0,0.05);}
+tbody td.total-col{font-weight:900;color:#8a3200;}
+tfoot tr{border-top:2px solid var(--yellow);background:rgba(255,107,0,0.05);}
 tfoot td{padding:12px 14px;font-size:12px;font-weight:900;}
 tfoot td.num{text-align:right;}
 .td-dim{color:var(--faint);font-size:12px;}
 .td-val{font-weight:800;}
 .sp{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;}
 .sp-rec{background:rgba(16,185,129,0.10);color:#059669;}
-.sp-open{background:rgba(247,198,0,0.15);color:#92620a;}
+.sp-open{background:rgba(255,107,0,0.15);color:#923A0a;}
 .sp-venc{background:#EF4444;color:#fff;animation:pulse 1.8s infinite;}
-.share-pill{display:inline-block;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;background:rgba(247,198,0,0.15);color:#7a6200;}
+.share-pill{display:inline-block;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:700;background:rgba(255,107,0,0.15);color:#7a3200;}
 
 /* ══ CLIENT CARDS ══ */
 .cli-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
@@ -186,7 +186,7 @@ tfoot td.num{text-align:right;}
   transition:box-shadow .18s;
 }
 .cli-mes-card:hover{box-shadow:var(--shadow-md);}
-.cli-mes-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c49e00,var(--yellow));}
+.cli-mes-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#cc4400,var(--yellow));}
 .cli-mes-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
 .cli-mes-total{font-size:16px;font-weight:900;color:var(--black);margin-bottom:12px;}
 .cli-bar-item{margin-bottom:8px;}
@@ -194,7 +194,7 @@ tfoot td.num{text-align:right;}
 .cli-bar-label .cname{font-weight:600;color:var(--black);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .cli-bar-label .cval{font-weight:700;color:var(--muted);}
 .cli-bar-track{background:#EBEBEB;border-radius:4px;height:5px;overflow:hidden;}
-.cli-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#c49e00,var(--yellow));}
+.cli-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#cc4400,var(--yellow));}
 .mini-bar-wrap{display:flex;flex-direction:column;gap:3px;}
 .mini-bar{height:5px;border-radius:3px;min-width:2px;}
 .bar26{background:var(--yellow);}.bar25{background:#D1D5DB;}
@@ -286,7 +286,7 @@ tfoot td.num{text-align:right;}
       <!-- Toggle switch icon fiel ao logo ontrade -->
       <img src="logo.png" alt="OGGI LIVE" style="max-width:200px;height:auto;margin-bottom:8px;">
       <div style="font-size:13px;color:#9CA3AF;margin-top:5px;font-weight:400;letter-spacing:.3px;">Dashboard Financeiro</div>
-      <div style="width:40px;height:3px;background:#F7C600;border-radius:2px;margin:16px auto 0;"></div>
+      <div style="width:40px;height:3px;background:#FF6B00;border-radius:2px;margin:16px auto 0;"></div>
     </div>
     <!-- Card -->
     <div style="background:#FFFFFF;border:1px solid #E4E6EB;border-radius:24px;padding:36px;box-shadow:0 8px 40px rgba(0,0,0,0.08);">
@@ -299,20 +299,20 @@ tfoot td.num{text-align:right;}
         <label style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1.2px;display:block;margin-bottom:8px;">Login</label>
         <input id="loginUser" type="text" placeholder="seu.login" autocomplete="username"
           style="width:100%;background:#F9FAFB;border:1.5px solid #E4E6EB;border-radius:12px;padding:13px 16px;font-size:14px;color:#1A1A1A;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;"
-          onfocus="this.style.borderColor='#F7C600'" onblur="this.style.borderColor='#E4E6EB'"
+          onfocus="this.style.borderColor='#FF6B00'" onblur="this.style.borderColor='#E4E6EB'"
           onkeydown="if(event.key==='Enter')document.getElementById('loginPass').focus()"/>
       </div>
       <div style="margin-bottom:28px;">
         <label style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:1.2px;display:block;margin-bottom:8px;">Senha</label>
         <input id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password"
           style="width:100%;background:#F9FAFB;border:1.5px solid #E4E6EB;border-radius:12px;padding:13px 16px;font-size:14px;color:#1A1A1A;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;"
-          onfocus="this.style.borderColor='#F7C600'" onblur="this.style.borderColor='#E4E6EB'"
+          onfocus="this.style.borderColor='#FF6B00'" onblur="this.style.borderColor='#E4E6EB'"
           onkeydown="if(event.key==='Enter')doLogin()"/>
       </div>
       <button id="entrarBtn" onclick="doLogin()"
-        style="width:100%;background:#F7C600;color:#282828;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:all .2s;box-shadow:0 4px 16px rgba(247,198,0,0.35);"
-        onmouseover="this.style.background='#FFD740';this.style.transform='translateY(-1px)'"
-        onmouseout="this.style.background='#F7C600';this.style.transform='translateY(0)'">
+        style="width:100%;background:#FF6B00;color:#282828;border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;transition:all .2s;box-shadow:0 4px 16px rgba(255,107,0,0.35);"
+        onmouseover="this.style.background='#FF8C33';this.style.transform='translateY(-1px)'"
+        onmouseout="this.style.background='#FF6B00';this.style.transform='translateY(0)'">
         Entrar
       </button>
     </div>
@@ -335,8 +335,8 @@ tfoot td.num{text-align:right;}
       <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Usuários ativos</div>
       <div id="adminUserList" style="margin-bottom:28px;"></div>
       <!-- Adicionar usuário -->
-      <div style="background:rgba(247,198,0,0.05);border:1px solid rgba(247,198,0,0.15);border-radius:14px;padding:20px;">
-        <div style="font-size:13px;font-weight:700;color:#F7C600;margin-bottom:16px;">➕ Adicionar usuário</div>
+      <div style="background:rgba(255,107,0,0.05);border:1px solid rgba(255,107,0,0.15);border-radius:14px;padding:20px;">
+        <div style="font-size:13px;font-weight:700;color:#FF6B00;margin-bottom:16px;">➕ Adicionar usuário</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
           <div>
             <label style="font-size:11px;color:rgba(255,255,255,0.4);display:block;margin-bottom:6px;">Nome completo</label>
@@ -355,7 +355,7 @@ tfoot td.num{text-align:right;}
             <input id="newSenha" type="password" placeholder="Senha segura" style="width:100%;background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;font-family:'Inter',sans-serif;"/>
           </div>
         </div>
-        <button onclick="adicionarUser()" style="background:#F7C600;color:#282828;border:none;border-radius:8px;padding:10px 20px;font-weight:800;cursor:pointer;font-size:13px;">Adicionar</button>
+        <button onclick="adicionarUser()" style="background:#FF6B00;color:#282828;border:none;border-radius:8px;padding:10px 20px;font-weight:800;cursor:pointer;font-size:13px;">Adicionar</button>
         <span id="adminMsg" style="margin-left:12px;font-size:12px;color:#10B981;display:none;"></span>
       </div>
     </div>
@@ -483,7 +483,7 @@ function iniciarDashboard(user){
   // Mostra nome do usuário no header
   var hr=document.getElementById('headerRight');
   if(hr){
-    var adminBtn=user.role==='admin'?'<button onclick="abrirAdmin()" style="background:#F7C600;color:#282828;border:none;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(247,198,0,0.3);">⚙ Admin</button>':'';
+    var adminBtn=user.role==='admin'?'<button onclick="abrirAdmin()" style="background:#FF6B00;color:#282828;border:none;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px rgba(255,107,0,0.3);">⚙ Admin</button>':'';
     hr.innerHTML='<div style="display:flex;align-items:center;gap:10px;">'+adminBtn+'<div style="text-align:right;"><div style="font-size:12px;font-weight:700;color:#1A1A1A;">'+user.nome+'</div><div style="font-size:10px;color:#6B7280;">'+user.cargo+'</div></div><button onclick="doLogout()" style="background:#F4F5F7;border:1px solid #E4E6EB;border-radius:20px;padding:5px 12px;font-size:11px;color:#6B7280;cursor:pointer;">Sair</button></div>';
   }
   // Força redimensionamento dos gráficos
@@ -511,11 +511,11 @@ function renderAdminList(){
     var login=entry[0],u=entry[1];
     var isMaster=login==='Bruno.silva';
     var isBase=base.indexOf(login)>=0;
-    var badge=u.role==='admin'?'<span style="background:rgba(247,198,0,0.15);color:#F7C600;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;">Admin</span>':'<span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);padding:2px 8px;border-radius:10px;font-size:10px;">Usuário</span>';
+    var badge=u.role==='admin'?'<span style="background:rgba(255,107,0,0.15);color:#FF6B00;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;">Admin</span>':'<span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);padding:2px 8px;border-radius:10px;font-size:10px;">Usuário</span>';
     var removeBtn=isMaster?'':`<button onclick="removerUser('`+login+`')" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:4px 10px;color:#F87171;font-size:11px;cursor:pointer;">Remover</button>`;
     html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,0.04);border-radius:10px;margin-bottom:8px;">'
       +'<div><div style="font-size:13px;font-weight:700;color:#fff;">'+u.nome+'</div>'
-      +'<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;"><code style="color:#F7C600;">'+login+'</code> · '+u.cargo+'</div></div>'
+      +'<div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;"><code style="color:#FF6B00;">'+login+'</code> · '+u.cargo+'</div></div>'
       +'<div style="display:flex;align-items:center;gap:8px;">'+badge+removeBtn+'</div></div>';
   });
   document.getElementById('adminUserList').innerHTML=html;
@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 06/07/2026 18:15</div>
+    <div class="update-badge">✓ Atualizado 06/07/2026 18:19</div>
     <div class="pill"><strong>159</strong> notas · Junho</div>
   </div>
 </div>
@@ -812,7 +812,7 @@ function removerUser(login){
       <div class="kpi-val" id="vencKpiCli" style="color:#EF4444;">—</div>
       <span class="kpi-badge b-neu">clientes</span>
     </div>
-    <div class="kpi" style="border-top:3px solid #F7C600;">
+    <div class="kpi" style="border-top:3px solid #FF6B00;">
       <span class="kpi-icon">⏱️</span>
       <div class="kpi-label">Maior Atraso</div>
       <div class="kpi-val" id="vencKpiMax">—</div>
@@ -859,13 +859,13 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">06/07/2026 18:15</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">06/07/2026 18:19</strong></div>
 </div>
 
 <script>
 // ══ CORES E UTILITÁRIOS ══
-const Y='#F7C600',B='#282828',GRAY='#C8C8C8',MUTED='#A0A5B0',GREEN='#1AAE6F',RED='#E03B3B';
-const CLI_COLORS=['#F7C600','#282828','#A0A5B0','#1AAE6F','#E03B3B','#6B7AE0','#E07A3B','#3BB5E0','#B03BE0','#3BE0C8'];
+const Y='#FF6B00',B='#282828',GRAY='#C8C8C8',MUTED='#A0A5B0',GREEN='#1AAE6F',RED='#E03B3B';
+const CLI_COLORS=['#FF6B00','#282828','#A0A5B0','#1AAE6F','#E03B3B','#6B7AE0','#E07A3B','#3BB5E0','#B03BE0','#3BE0C8'];
 const TT={backgroundColor:'#FFF',borderColor:Y,borderWidth:1.5,titleColor:B,bodyColor:B,padding:10};
 
 // ══ DADOS — carregados do Firestore após login ══
@@ -955,7 +955,7 @@ function inicializarDashboard(d,notas26,notas25){
 // Bar mensal 2026
 new Chart(document.getElementById('barMes'),{type:'bar',
   data:{labels:LABELS_26,datasets:[{data:VALS_26,
-    backgroundColor:VALS_26.map((_,i)=>i===VALS_26.indexOf(Math.max(...VALS_26))?Y:'rgba(247,198,0,0.38)'),
+    backgroundColor:VALS_26.map((_,i)=>i===VALS_26.indexOf(Math.max(...VALS_26))?Y:'rgba(255,107,0,0.38)'),
     borderColor:Y,borderWidth:1.5,borderRadius:8,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>fmtK(c.raw)}}},
@@ -983,7 +983,7 @@ topCli.forEach(([n,v])=>{
 // Line acumulada 2026
 const acum26=VALS_26.reduce((a,v,i)=>{a.push((a[i-1]||0)+v);return a;},[]);
 new Chart(document.getElementById('lineAcum'),{type:'line',
-  data:{labels:LABELS_26,datasets:[{data:acum26,borderColor:Y,backgroundColor:'rgba(247,198,0,0.08)',
+  data:{labels:LABELS_26,datasets:[{data:acum26,borderColor:Y,backgroundColor:'rgba(255,107,0,0.08)',
     borderWidth:3,pointBackgroundColor:Y,pointBorderColor:B,pointBorderWidth:2,pointRadius:5,fill:true,tension:0.4}]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>fmtK(c.raw)}}},
@@ -995,7 +995,7 @@ new Chart(document.getElementById('lineAcum'),{type:'line',
 new Chart(document.getElementById('barComp'),{type:'bar',
   data:{labels:LABELS_C,datasets:[
     {label:'2025',data:VALS_25C,backgroundColor:'rgba(200,200,200,0.7)',borderColor:GRAY,borderWidth:1.5,borderRadius:6,borderSkipped:false},
-    {label:'2026',data:VALS_26C,backgroundColor:'rgba(247,198,0,0.85)',borderColor:Y,borderWidth:1.5,borderRadius:6,borderSkipped:false},
+    {label:'2026',data:VALS_26C,backgroundColor:'rgba(255,107,0,0.85)',borderColor:Y,borderWidth:1.5,borderRadius:6,borderSkipped:false},
   ]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'top',labels:{color:B,font:{size:12,weight:'700'},padding:16}},
@@ -1006,7 +1006,7 @@ new Chart(document.getElementById('barComp'),{type:'bar',
 
 new Chart(document.getElementById('barVar'),{type:'bar',
   data:{labels:LABELS_C,datasets:[{label:'Var %',data:VAR_PCT,
-    backgroundColor:VAR_PCT.map(v=>v>=0?'rgba(247,198,0,0.85)':'rgba(224,59,59,0.75)'),
+    backgroundColor:VAR_PCT.map(v=>v>=0?'rgba(255,107,0,0.85)':'rgba(224,59,59,0.75)'),
     borderColor:VAR_PCT.map(v=>v>=0?Y:RED),borderWidth:1.5,borderRadius:6,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>(c.raw>0?'+':'')+c.raw.toFixed(1)+'%'}}},
@@ -1017,7 +1017,7 @@ new Chart(document.getElementById('barVar'),{type:'bar',
 new Chart(document.getElementById('lineComp'),{type:'line',
   data:{labels:LABELS_C,datasets:[
     {label:'2025',data:ACUM_25C,borderColor:GRAY,backgroundColor:'rgba(200,200,200,0.05)',borderWidth:2.5,borderDash:[6,4],pointBackgroundColor:GRAY,pointBorderColor:B,pointBorderWidth:2,pointRadius:5,fill:false,tension:0.4},
-    {label:'2026',data:ACUM_26C,borderColor:Y,backgroundColor:'rgba(247,198,0,0.08)',borderWidth:3,pointBackgroundColor:Y,pointBorderColor:B,pointBorderWidth:2,pointRadius:6,fill:true,tension:0.4},
+    {label:'2026',data:ACUM_26C,borderColor:Y,backgroundColor:'rgba(255,107,0,0.08)',borderWidth:3,pointBackgroundColor:Y,pointBorderColor:B,pointBorderWidth:2,pointRadius:6,fill:true,tension:0.4},
   ]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'top',labels:{color:B,font:{size:12,weight:'700'},padding:16}},
@@ -1029,7 +1029,7 @@ new Chart(document.getElementById('lineComp'),{type:'line',
 new Chart(document.getElementById('radar'),{type:'radar',
   data:{labels:LABELS_C,datasets:[
     {label:'2025',data:VALS_25C,borderColor:GRAY,backgroundColor:'rgba(200,200,200,0.15)',borderWidth:2,pointBackgroundColor:GRAY,pointRadius:4},
-    {label:'2026',data:VALS_26C,borderColor:Y,backgroundColor:'rgba(247,198,0,0.18)',borderWidth:3,pointBackgroundColor:Y,pointRadius:5},
+    {label:'2026',data:VALS_26C,borderColor:Y,backgroundColor:'rgba(255,107,0,0.18)',borderWidth:3,pointBackgroundColor:Y,pointRadius:5},
   ]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'top',labels:{color:B,font:{size:12,weight:'700'},padding:16}},
@@ -1047,15 +1047,15 @@ document.getElementById('compBody').innerHTML=MESES_C.map((m,i)=>{
   return`<tr>
     <td style="font-weight:700">${LABELS_C[i]}</td>
     <td class="num" style="color:var(--muted)">${fmtR(VALS_25C[i])}</td>
-    <td class="num" style="color:#8a6200">${fmtR(VALS_26C[i])}</td>
+    <td class="num" style="color:#8a3200">${fmtR(VALS_26C[i])}</td>
     <td class="num ${up?'up':'down'}">${up?'+':'-'} ${fmtR(Math.abs(VALS_26C[i]-VALS_25C[i]))}</td>
     <td class="num" style="font-weight:800" class="${up?'up':'down'}">${up?'▲':'▼'} ${Math.abs(VAR_PCT[i]).toFixed(1)}%</td>
     <td><div class="mini-bar-wrap"><div class="mini-bar bar26" style="width:${w26}px"></div><div class="mini-bar bar25" style="width:${w25}px"></div></div></td>
   </tr>`;
-}).join('')+`<tr style="background:rgba(247,198,0,0.06);border-top:2px solid ${Y}">
-  <td style="font-weight:900;color:#8a6200">TOTAL</td>
+}).join('')+`<tr style="background:rgba(255,107,0,0.06);border-top:2px solid ${Y}">
+  <td style="font-weight:900;color:#8a3200">TOTAL</td>
   <td class="num" style="font-weight:900;color:var(--muted)">${fmtR(VALS_25C.reduce((a,v)=>a+v,0))}</td>
-  <td class="num" style="font-weight:900;color:#8a6200">${fmtR(VALS_26C.reduce((a,v)=>a+v,0))}</td>
+  <td class="num" style="font-weight:900;color:#8a3200">${fmtR(VALS_26C.reduce((a,v)=>a+v,0))}</td>
   <td class="num up" style="font-weight:900">+ ${fmtR(VALS_26C.reduce((a,v)=>a+v,0)-VALS_25C.reduce((a,v)=>a+v,0))}</td>
   <td class="num up" style="font-size:15px;font-weight:900">▲ ${Math.abs(((VALS_26C.reduce((a,v)=>a+v,0)-VALS_25C.reduce((a,v)=>a+v,0))/VALS_25C.reduce((a,v)=>a+v,0))*100).toFixed(1)}%</td>
   <td></td></tr>`;
@@ -1092,13 +1092,13 @@ function renderClientes(){
   const mesTot=MESES.map(m=>CLIS.reduce((a,c)=>a+(d.clientes[c][m]||0),0));
   document.getElementById('cliSubtitle').textContent=`Faturamento por cliente · ${anoAtivo} · ${LABELS[0]} a ${LABELS[LABELS.length-1]}`;
   document.getElementById('cliThead').innerHTML=`<th>Cliente</th>`+LABELS.map(l=>`<th class="num">${l}</th>`).join('')+`<th class="num">Total ${anoAtivo}</th><th class="num">Part. %</th>`;
-  document.getElementById('cliTbody').innerHTML=CLIS.map((c,i)=>`<tr style="${i===0?'background:rgba(247,198,0,0.06);':''}">
+  document.getElementById('cliTbody').innerHTML=CLIS.map((c,i)=>`<tr style="${i===0?'background:rgba(255,107,0,0.06);':''}">
     <td style="font-weight:700">${c}</td>
     ${MESES.map(m=>`<td class="num">${fmtFull(d.clientes[c][m]||0)}</td>`).join('')}
     <td class="num total-col">${fmtFull(cliTot[c])}</td>
     <td class="num"><span class="share-pill">${(cliTot[c]/grand*100).toFixed(1)}%</span></td>
   </tr>`).join('');
-  document.getElementById('cliTfoot').innerHTML=`<tr><td style="font-weight:900">TOTAL</td>${mesTot.map(t=>`<td class="num">${fmtFull(t)}</td>`).join('')}<td class="num" style="color:#8a6200">${fmtFull(grand)}</td><td class="num"><span class="share-pill">100%</span></td></tr>`;
+  document.getElementById('cliTfoot').innerHTML=`<tr><td style="font-weight:900">TOTAL</td>${mesTot.map(t=>`<td class="num">${fmtFull(t)}</td>`).join('')}<td class="num" style="color:#8a3200">${fmtFull(grand)}</td><td class="num"><span class="share-pill">100%</span></td></tr>`;
   const cols=Math.min(MESES.length,6);
   const grid=document.getElementById('cliCards');
   grid.style.gridTemplateColumns=`repeat(${cols},1fr)`;
@@ -1187,7 +1187,7 @@ function filterNotas(el,mes){
   }).join('');
   const total=rows.reduce((a,r)=>a+r.valor,0);
   const qtd=rows.length;
-  document.getElementById('notasFoot').innerHTML='<tr><td colspan="5" style="font-weight:900;font-size:13px;padding:12px 14px;">TOTAL — '+qtd+' nota'+(qtd!==1?'s':'')+'</td><td class="num" style="font-weight:900;font-size:15px;color:#8a6200;padding:12px 14px;">'+fmtR(total)+'</td><td></td><td></td></tr>';
+  document.getElementById('notasFoot').innerHTML='<tr><td colspan="5" style="font-weight:900;font-size:13px;padding:12px 14px;">TOTAL — '+qtd+' nota'+(qtd!==1?'s':'')+'</td><td class="num" style="font-weight:900;font-size:15px;color:#8a3200;padding:12px 14px;">'+fmtR(total)+'</td><td></td><td></td></tr>';
 }
 
 function imprimirNotas(){
@@ -1204,9 +1204,9 @@ function imprimirNotas(){
   var css='body{font-family:Arial,sans-serif;font-size:11px;color:#222;margin:24px;}';
   css+='h2{font-size:16px;margin-bottom:2px;}p{font-size:11px;color:#777;margin-bottom:12px;}';
   css+='table{width:100%;border-collapse:collapse;}';
-  css+='th{background:#282828;color:#F7C600;padding:7px 8px;text-align:left;font-size:10px;text-transform:uppercase;}';
+  css+='th{background:#282828;color:#FF6B00;padding:7px 8px;text-align:left;font-size:10px;text-transform:uppercase;}';
   css+='td{padding:6px 8px;border-bottom:1px solid #eee;vertical-align:top;}';
-  css+='.total-row{background:#FFFBEA;font-weight:bold;border-top:2px solid #F7C600;}';
+  css+='.total-row{background:#FFFBEA;font-weight:bold;border-top:2px solid #FF6B00;}';
   var html='<!DOCTYPE html><html><head><meta charset="UTF-8">';
   html+='<title>OGGI LIVE Notas 2026 '+mes+'</title>';
   html+='<style>'+css+'</style></head><body>';
