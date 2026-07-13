@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 13/07/2026 17:16</div>
+    <div class="update-badge">✓ Atualizado 13/07/2026 17:23</div>
     <div class="pill"><strong>166</strong> notas · Julho</div>
   </div>
 </div>
@@ -912,11 +912,11 @@ function removerUser(login){
     </div>
   </div>
 
-  <!-- Filtros -->
+  <!-- Filtro cards de mês -->
+  <div id="resFilterCards" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;"></div>
+
+  <!-- Filtro cliente + exportar -->
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
-    <div id="resMesTabs" style="display:flex;gap:4px;flex-wrap:wrap;">
-      <div class="ftab on" onclick="filtrarResultado(this,'__todos__','mes')">Todos</div>
-    </div>
     <div style="flex:1;min-width:160px;">
       <select id="resCliFilter" onchange="filtrarResultadoCli(this.value)"
         style="width:100%;background:#F9FAFB;border:1.5px solid #E4E6EB;border-radius:8px;padding:7px 12px;font-size:12px;font-family:'Inter',sans-serif;color:#1A1A1A;outline:none;">
@@ -955,7 +955,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 17:16</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 17:23</strong></div>
 </div>
 
 <script>
@@ -1508,20 +1508,33 @@ function renderResultado(){
   const dados=RESULTADO_DATA;
   if(!dados||!dados.length) return;
 
-  // Meses únicos (na ordem ORDEM_MESES)
   const MESES_ORDER=['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'];
   const mesesSet=new Set(dados.map(r=>r.mes));
   const meses=[...MESES_ORDER.filter(m=>mesesSet.has(m))];
+  const fmtV=v=>'R$ '+Math.abs(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
+  const fmtP=v=>(v*100).toFixed(1)+'%';
 
-  // Filtros tabs de mês
-  const mesTabs=document.getElementById('resMesTabs');
-  if(mesTabs&&mesTabs.children.length<=1){
+  // Totais por mês
+  const totaisMes={};
+  dados.forEach(r=>{
+    if(!totaisMes[r.mes]) totaisMes[r.mes]={venda:0,lucro:0,jobs:0};
+    totaisMes[r.mes].venda+=r.venda;
+    totaisMes[r.mes].lucro+=r.lucro;
+    totaisMes[r.mes].jobs++;
+  });
+  const totGeral={venda:dados.reduce((s,r)=>s+r.venda,0),lucro:dados.reduce((s,r)=>s+r.lucro,0),jobs:dados.length};
+
+  // Render filter cards de mês
+  const fc=document.getElementById('resFilterCards');
+  if(fc&&fc.children.length===0){
+    // Card "Todos"
+    const cardTodos=_mkResCard('Todos os Meses',totGeral,fmtV,fmtP,'__todos__',true);
+    fc.appendChild(cardTodos);
     meses.forEach(m=>{
-      const d=document.createElement('div');
-      d.className='ftab';
-      d.textContent=m.charAt(0)+m.slice(1).toLowerCase();
-      d.onclick=function(){filtrarResultado(this,m,'mes');};
-      mesTabs.appendChild(d);
+      const t=totaisMes[m];
+      const label=m.charAt(0)+m.slice(1).toLowerCase();
+      const card=_mkResCard(label,t,fmtV,fmtP,m,false);
+      fc.appendChild(card);
     });
   }
 
@@ -1536,6 +1549,30 @@ function renderResultado(){
   }
 
   _renderResTabela();
+}
+
+function _mkResCard(label,totais,fmtV,fmtP,mes,ativo){
+  const rent=totais.venda?totais.lucro/totais.venda:0;
+  const up=totais.lucro>=0;
+  const card=document.createElement('div');
+  card.dataset.mes=mes;
+  card.style.cssText='cursor:pointer;border-radius:14px;padding:14px 18px;min-width:140px;border:2px solid '+(ativo?'var(--yellow)':'var(--border)')+';background:'+(ativo?'rgba(255,107,0,0.06)':'var(--white)')+';transition:all .18s;flex:0 0 auto;';
+  card.innerHTML=
+    '<div style="font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">'+label+'</div>'+
+    '<div style="font-size:15px;font-weight:800;color:var(--black);margin-bottom:2px;">'+fmtV(totais.venda)+'</div>'+
+    '<div style="font-size:12px;font-weight:600;color:'+(up?'var(--green)':'var(--red)')+';">'+fmtV(totais.lucro)+' <span style="font-size:10px;opacity:.8;">('+fmtP(rent)+')</span></div>'+
+    '<div style="font-size:10px;color:#A0A5B0;margin-top:4px;">'+totais.jobs+' job'+(totais.jobs!==1?'s':'')+'</div>';
+  card.onclick=function(){
+    document.querySelectorAll('#resFilterCards > div').forEach(c=>{
+      c.style.borderColor='var(--border)';
+      c.style.background='var(--white)';
+    });
+    card.style.borderColor='var(--yellow)';
+    card.style.background='rgba(255,107,0,0.06)';
+    _resFilter.mes=mes;
+    _renderResTabela();
+  };
+  return card;
 }
 
 function _getResRows(){
@@ -1585,13 +1622,6 @@ function _renderResTabela(){
     <td style="padding:11px 14px;text-align:right;font-weight:900;color:${totLucro>=0?'var(--green)':'var(--red)'};">${fmtV(totLucro)}</td>
     <td style="padding:11px 14px;text-align:right;font-weight:900;color:${totLucro>=0?'var(--green)':'var(--red)'};">${fmtP(rentMed)}</td>
   </tr>`;
-}
-
-function filtrarResultado(el,mes,tipo){
-  _resFilter.mes=mes;
-  document.querySelectorAll('#resMesTabs .ftab').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
-  _renderResTabela();
 }
 
 function filtrarResultadoCli(cli){
