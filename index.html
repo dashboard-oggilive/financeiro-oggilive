@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 13/07/2026 17:13</div>
+    <div class="update-badge">✓ Atualizado 13/07/2026 17:16</div>
     <div class="pill"><strong>166</strong> notas · Julho</div>
   </div>
 </div>
@@ -910,12 +910,6 @@ function removerUser(login){
       <div class="kpi-val" id="resKpiMelhorJob" style="font-size:13px;">—</div>
       <span class="kpi-badge b-pos" id="resKpiMelhorJobVal">—</span>
     </div>
-    <div class="kpi" style="border-top:3px solid #6B7AE0;">
-      <span class="kpi-icon">💼</span>
-      <div class="kpi-label">Comissão Total</div>
-      <div class="kpi-val" id="resKpiComissao" style="color:#6B7AE0;">—</div>
-      <span class="kpi-badge" style="background:rgba(107,122,224,0.1);color:#6B7AE0;" id="resKpiComissaoBadge">Isabela Ferreira</span>
-    </div>
   </div>
 
   <!-- Filtros -->
@@ -946,7 +940,6 @@ function removerUser(login){
           <th style="padding:11px 14px;text-align:right;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.8px;">Custo</th>
           <th style="padding:11px 14px;text-align:right;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.8px;">Lucro</th>
           <th style="padding:11px 14px;text-align:right;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.8px;">Rent.</th>
-          <th style="padding:11px 14px;text-align:right;font-size:11px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.8px;">Comissão</th>
         </tr>
       </thead>
       <tbody id="resBody"></tbody>
@@ -962,7 +955,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 17:13</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 17:16</strong></div>
 </div>
 
 <script>
@@ -976,7 +969,7 @@ let MESES_26,LABELS_26,VALS_26,MESES_25,LABELS_25,VALS_25;
 let MESES_C,LABELS_C,VALS_26C,VALS_25C,ACUM_26C,ACUM_25C,VAR_PCT;
 let RECEBIDO,EM_ABERTO,TOTAL_26,CLI_26,CLI_25,NOTAS_26,NOTAS_25;
 let NOTAS=[], anoNotasAtivo=2026;
-let RESULTADO_DATA=[];
+let RESULTADO_DATA=[{"cliente": "LACTALIS", "job": "LT_051_SUPER_BAHIA", "mes": "JANEIRO", "venda": 133609.04, "custo": 90953.85, "lucro": 42655.19, "rentabilidade": 0.3193}, {"cliente": "LACTALIS", "job": "LT_052_ENCONTRO DE LÍDERES 2025", "mes": "JANEIRO", "venda": 1582476.83, "custo": 1297208.45, "lucro": 285268.38, "rentabilidade": 0.1803}, {"cliente": "LACTALIS", "job": "LT_059 ATIVAÇÃO DE LANÇAMENTO", "mes": "JANEIRO", "venda": 39066.57, "custo": 24430.86, "lucro": 14635.71, "rentabilidade": 0.3746}, {"cliente": "LACTALIS", "job": "LT_062 LOCAÇÃO SALAS", "mes": "JANEIRO", "venda": 33608.89, "custo": 30762.16, "lucro": 2846.73, "rentabilidade": 0.0847}, {"cliente": "LACTALIS", "job": "LT_071_PRODUÇÃO_GRÁFICA", "mes": "JANEIRO", "venda": 3469.18, "custo": 1310.33, "lucro": 2158.85, "rentabilidade": 0.6223}, {"cliente": "LENOVO", "job": "LE_179_MOTOROLA_MINI_COQUETEL_JK", "mes": "JANEIRO", "venda": 10545.96, "custo": 6945.1, "lucro": 3600.86, "rentabilidade": 0.3414}, {"cliente": "LENOVO", "job": "LE_183_LENOVO_E_EBDI", "mes": "JANEIRO", "venda": 27300.0, "custo": 21695.63, "lucro": 5604.37, "rentabilidade": 0.2053}, {"cliente": "LENOVO", "job": "LE_190_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 13366.89, "custo": 5688.64, "lucro": 7678.25, "rentabilidade": 0.5744}, {"cliente": "LENOVO", "job": "LE_191_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 11737.23, "custo": 5856.49, "lucro": 5880.74, "rentabilidade": 0.501}, {"cliente": "LENOVO", "job": "LE_192_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 12099.37, "custo": 6560.16, "lucro": 5539.21, "rentabilidade": 0.4578}, {"cliente": "LENOVO", "job": "LE_207 ARROW PRIVATE", "mes": "JANEIRO", "venda": 264248.91, "custo": 222237.13, "lucro": 42011.78, "rentabilidade": 0.159}, {"cliente": "LENOVO", "job": "LE_214_CAFÉ_TECH_WORLD", "mes": "JANEIRO", "venda": 4961.21, "custo": 3710.58, "lucro": 1250.63, "rentabilidade": 0.2521}, {"cliente": "LENOVO", "job": "LE_221_JOGOS _DA_PRIMAVERA", "mes": "JANEIRO", "venda": 8652.02, "custo": 6822.8, "lucro": 1829.22, "rentabilidade": 0.2114}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_39_ PERSONALIZAÇÃO_RETROZINHA_PARA_MAGALU", "mes": "JANEIRO", "venda": 125496.79, "custo": 93830.57, "lucro": 31666.22, "rentabilidade": 0.2523}, {"cliente": "BOWE", "job": "BOWE_001_EVENTO_DE_RELACIONAMENTO", "mes": "FEVEREIRO", "venda": 33842.03, "custo": 30080.23, "lucro": 3761.8, "rentabilidade": 0.1112}, {"cliente": "LACTALIS", "job": "LT_049_CONVENÇÃO_ITAMBÉ_2026", "mes": "FEVEREIRO", "venda": 1454803.9, "custo": 1409482.96, "lucro": 45320.94, "rentabilidade": 0.0312}, {"cliente": "LACTALIS", "job": "LT_050_CONVENÇÃO_LDB_2026", "mes": "FEVEREIRO", "venda": 1909694.02, "custo": 909956.52, "lucro": 999737.5, "rentabilidade": 0.5235}, {"cliente": "LACTALIS", "job": "LT_069_CONVENÇÃO_FOOD_2026", "mes": "FEVEREIRO", "venda": 251519.25, "custo": 167995.69, "lucro": 83523.56, "rentabilidade": 0.3321}, {"cliente": "LENOVO", "job": "LE_211_HAPPY_HOUR_SP_E_IDU", "mes": "FEVEREIRO", "venda": 52725.0, "custo": 32330.85, "lucro": 20394.15, "rentabilidade": 0.3868}, {"cliente": "LENOVO", "job": "LE_218_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 8726.24, "lucro": 4676.37, "rentabilidade": 0.3489}, {"cliente": "LENOVO", "job": "LE_219_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13893.08, "custo": 8873.8, "lucro": 5019.28, "rentabilidade": 0.3613}, {"cliente": "LENOVO", "job": "LE_227_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 6098.52, "lucro": 7304.09, "rentabilidade": 0.545}, {"cliente": "LENOVO", "job": "LE_228_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 7502.41, "lucro": 5900.2, "rentabilidade": 0.4402}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_028_WHUB_2026", "mes": "FEVEREIRO", "venda": 8645935.55, "custo": 7692879.1, "lucro": 953056.45, "rentabilidade": 0.1102}, {"cliente": "LACTALIS", "job": "LT_056_CONVENÇÃO_DPA_2026", "mes": "MARÇO", "venda": 2896045.07, "custo": 2942642.77, "lucro": -46597.7, "rentabilidade": -0.0161}, {"cliente": "LENOVO", "job": "LE_224_ARROW_SP_E_BH", "mes": "MARÇO", "venda": 275727.51, "custo": 197393.37, "lucro": 78334.14, "rentabilidade": 0.2841}, {"cliente": "LENOVO", "job": "LE_225_CIO_BRASIL", "mes": "MARÇO", "venda": 78337.24, "custo": 57749.5, "lucro": 20587.74, "rentabilidade": 0.2628}, {"cliente": "LENOVO", "job": "LE_229_VISITA_A_FÁBRICA", "mes": "MARÇO", "venda": 17732.01, "custo": 14167.37, "lucro": 3564.64, "rentabilidade": 0.201}, {"cliente": "LENOVO", "job": "LE_230_BRINDES_CAMPANHA_INCENTIVO_AMD", "mes": "MARÇO", "venda": 52103.4, "custo": 35113.9, "lucro": 16989.5, "rentabilidade": 0.3261}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_047_EVENTO_SUPRIMENTOS", "mes": "MARÇO", "venda": 119358.88, "custo": 88726.19, "lucro": 30632.7, "rentabilidade": 0.2566}, {"cliente": "LENOVO", "job": "LE_217_TECH_WORLD", "mes": "ABRIL", "venda": 2100462.09, "custo": 1467334.52, "lucro": 633127.57, "rentabilidade": 0.3014}, {"cliente": "LENOVO", "job": "LE_233_SUMMIT_AGRO", "mes": "ABRIL", "venda": 46010.54, "custo": 30766.8, "lucro": 15243.74, "rentabilidade": 0.3313}, {"cliente": "LENOVO", "job": "LE_234_ESTANDE_MAGALU", "mes": "ABRIL", "venda": 180939.49, "custo": 136706.28, "lucro": 44233.21, "rentabilidade": 0.2445}, {"cliente": "LENOVO", "job": "LE_238_VISITA_A_FÁBRICA", "mes": "ABRIL", "venda": 10433.0, "custo": 5227.55, "lucro": 5205.45, "rentabilidade": 0.4989}, {"cliente": "LENOVO", "job": "LE_240_KICKOFF_LAPA_E_LBC", "mes": "ABRIL", "venda": 6474.89, "custo": 4644.28, "lucro": 1830.61, "rentabilidade": 0.2827}, {"cliente": "LACTALIS", "job": "LT_073_LOCAÇÃO_SALAS", "mes": "ABRIL", "venda": 39841.11, "custo": 36644.56, "lucro": 3196.55, "rentabilidade": 0.0802}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_049_ESTANDE_MAGALU", "mes": "ABRIL", "venda": 409282.26, "custo": 348982.14, "lucro": 60300.12, "rentabilidade": 0.1473}, {"cliente": "LENOVO", "job": "LE_235_MINI_BOLA", "mes": "MAIO", "venda": 72555.31, "custo": 53781.42, "lucro": 18773.89, "rentabilidade": 0.2588}, {"cliente": "LENOVO", "job": "LE_243_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 11586.53, "custo": 6215.86, "lucro": 5370.67, "rentabilidade": 0.4635}, {"cliente": "LENOVO", "job": "LE_244_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 13955.68, "custo": 6086.61, "lucro": 7869.07, "rentabilidade": 0.5639}, {"cliente": "LENOVO", "job": "LE_245_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 14614.87, "custo": 7352.73, "lucro": 7262.14, "rentabilidade": 0.4969}, {"cliente": "LENOVO", "job": "LE_248_ONE_SUPPLY_CHAIN_FORUM_2026", "mes": "MAIO", "venda": 10256.32, "custo": 8034.66, "lucro": 2221.66, "rentabilidade": 0.2166}, {"cliente": "LACTALIS", "job": "LT_061_CAMPANHA_DE_INCENTIVO_BUENOS_AIRES", "mes": "MAIO", "venda": 416358.26, "custo": 283315.58, "lucro": 133042.68, "rentabilidade": 0.3195}, {"cliente": "LACTALIS", "job": "LT_072_TRADE_SHOW_2026", "mes": "MAIO", "venda": 333996.06, "custo": 274531.14, "lucro": 59464.92, "rentabilidade": 0.178}, {"cliente": "LACTALIS", "job": "LT_074_APRAS", "mes": "MAIO", "venda": 352621.76, "custo": 270684.0, "lucro": 81937.76, "rentabilidade": 0.2324}, {"cliente": "MOTOROLA", "job": "MOT_007_SÃO_PAULO_INNOVATION_WEEK_2026", "mes": "MAIO", "venda": 156885.24, "custo": 111872.67, "lucro": 45012.57, "rentabilidade": 0.2869}, {"cliente": "JOÃO CORDEIRO", "job": "JOA_001_ACCOUNTABILITY SUMMIT", "mes": "MAIO", "venda": 124350.82, "custo": 69979.34, "lucro": 54371.48, "rentabilidade": 0.4372}];
 let _resFilter={mes:'__todos__',cli:''};
 let _chartsInit=false;
 // ── Estado global das abas interativas (precisa ser global para onclick funcionar) ──
@@ -1561,7 +1554,6 @@ function _renderResTabela(){
   // KPIs
   const totVenda=rows.reduce((s,r)=>s+r.venda,0);
   const totLucro=rows.reduce((s,r)=>s+r.lucro,0);
-  const totComis=rows.reduce((s,r)=>s+r.comissao,0);
   const rentMed=totVenda?totLucro/totVenda:0;
   const melhor=rows.reduce((b,r)=>r.lucro>b.lucro?r:b,rows[0]||{});
 
@@ -1571,7 +1563,6 @@ function _renderResTabela(){
   document.getElementById('resKpiRent').textContent='Rent. '+fmtP(rentMed);
   document.getElementById('resKpiMelhorJob').textContent=melhor?melhor.job:'—';
   document.getElementById('resKpiMelhorJobVal').textContent=melhor?fmtV(melhor.lucro):'—';
-  document.getElementById('resKpiComissao').textContent=fmtV(totComis);
 
   // Tabela
   document.getElementById('resBody').innerHTML=rows.map((r,i)=>{
@@ -1584,7 +1575,6 @@ function _renderResTabela(){
       <td style="padding:10px 14px;text-align:right;color:#6B7280;">${fmtV(r.custo)}</td>
       <td style="padding:10px 14px;text-align:right;font-weight:700;color:${up?'var(--green)':'var(--red)'};">${fmtV(r.lucro)}</td>
       <td style="padding:10px 14px;text-align:right;font-weight:700;color:${up?'var(--green)':'var(--red)'};">${fmtP(r.rentabilidade)}</td>
-      <td style="padding:10px 14px;text-align:right;color:#6B7AE0;">${r.comissao>0?fmtV(r.comissao):'—'}</td>
     </tr>`;
   }).join('');
 
@@ -1594,7 +1584,6 @@ function _renderResTabela(){
     <td style="padding:11px 14px;text-align:right;font-weight:900;color:#6B7280;">${fmtV(rows.reduce((s,r)=>s+r.custo,0))}</td>
     <td style="padding:11px 14px;text-align:right;font-weight:900;color:${totLucro>=0?'var(--green)':'var(--red)'};">${fmtV(totLucro)}</td>
     <td style="padding:11px 14px;text-align:right;font-weight:900;color:${totLucro>=0?'var(--green)':'var(--red)'};">${fmtP(rentMed)}</td>
-    <td style="padding:11px 14px;text-align:right;font-weight:900;color:#6B7AE0;">${fmtV(totComis)}</td>
   </tr>`;
 }
 
@@ -1614,16 +1603,15 @@ function exportarResultado(){
   const rows=_getResRows();
   const SEP='\t',NL='\n';
   let csv='﻿';
-  csv+='Cliente'+SEP+'JOB'+SEP+'Mês'+SEP+'Venda (R$)'+SEP+'Custo (R$)'+SEP+'Lucro (R$)'+SEP+'Rentabilidade'+SEP+'Comissão (R$)'+NL;
+  csv+='Cliente'+SEP+'JOB'+SEP+'Mês'+SEP+'Venda (R$)'+SEP+'Custo (R$)'+SEP+'Lucro (R$)'+SEP+'Rentabilidade'+NL;
   rows.forEach(r=>{
     const fmt=v=>v.toFixed(2).replace('.',',');
-    csv+=r.cliente+SEP+r.job+SEP+r.mes+SEP+fmt(r.venda)+SEP+fmt(r.custo)+SEP+fmt(r.lucro)+SEP+(r.rentabilidade*100).toFixed(1)+'%'+SEP+fmt(r.comissao)+NL;
+    csv+=r.cliente+SEP+r.job+SEP+r.mes+SEP+fmt(r.venda)+SEP+fmt(r.custo)+SEP+fmt(r.lucro)+SEP+(r.rentabilidade*100).toFixed(1)+'%'+NL;
   });
   const totVenda=rows.reduce((s,r)=>s+r.venda,0);
   const totLucro=rows.reduce((s,r)=>s+r.lucro,0);
-  const totComis=rows.reduce((s,r)=>s+r.comissao,0);
   const rent=totVenda?totLucro/totVenda:0;
-  csv+='TOTAL'+SEP+SEP+SEP+totVenda.toFixed(2).replace('.',',')+SEP+rows.reduce((s,r)=>s+r.custo,0).toFixed(2).replace('.',',')+SEP+totLucro.toFixed(2).replace('.',',')+SEP+(rent*100).toFixed(1)+'%'+SEP+totComis.toFixed(2).replace('.',',')+NL;
+  csv+='TOTAL'+SEP+SEP+SEP+totVenda.toFixed(2).replace('.',',')+SEP+rows.reduce((s,r)=>s+r.custo,0).toFixed(2).replace('.',',')+SEP+totLucro.toFixed(2).replace('.',',')+SEP+(rent*100).toFixed(1)+'%'+NL;
   const blob=new Blob([csv],{type:'text/tab-separated-values;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download='oggilive_resultado_2026.xls';a.click();
