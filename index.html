@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 08/07/2026 14:48</div>
+    <div class="update-badge">✓ Atualizado 13/07/2026 15:02</div>
     <div class="pill"><strong>166</strong> notas · Julho</div>
   </div>
 </div>
@@ -699,6 +699,37 @@ function removerUser(login){
     <div class="card-title"><span class="tdot"></span>2025 — Ano Completo (12 meses)</div>
     <div class="card-sub">Referência anual completa</div>
     <div class="chs"><canvas id="bar25full"></canvas></div>
+  </div>
+
+  <!-- ── COMPARATIVO POR CLIENTE ── -->
+  <div class="tcard mb20">
+    <div class="ttop">
+      <div>
+        <div class="card-title"><span class="tdot"></span>Comparativo por Cliente — 2025 vs 2026</div>
+        <div class="card-sub">Crescimento individual por cliente no período comparável</div>
+      </div>
+      <div class="ftabs" id="compCliTabs">
+        <div class="ftab on" onclick="compCliView(this,'tabela')">📋 Tabela</div>
+        <div class="ftab" onclick="compCliView(this,'grafico')">📊 Gráfico</div>
+      </div>
+    </div>
+    <div id="compCliTabela" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table style="min-width:520px;" id="compCliTable">
+        <thead><tr>
+          <th>Cliente</th>
+          <th class="num">2025</th>
+          <th class="num">2026</th>
+          <th class="num">Var. R$</th>
+          <th class="num">Var. %</th>
+          <th>Tendência</th>
+        </tr></thead>
+        <tbody id="compCliBody"></tbody>
+        <tfoot id="compCliFoot"></tfoot>
+      </table>
+    </div>
+    <div id="compCliGrafico" style="display:none;position:relative;height:360px;">
+      <canvas id="barCompCli"></canvas>
+    </div>
   </div>
 </div>
 </div>
@@ -859,7 +890,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">08/07/2026 14:48</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 15:02</strong></div>
 </div>
 
 <script>
@@ -1075,7 +1106,86 @@ new Chart(document.getElementById('bar25full'),{type:'bar',
   renderClientes();
   filterNotas(document.querySelector('#notasTabs .ftab'),'Todos');
   renderVencidos();
+  renderCompClientes();
 } // ── fim inicializarDashboard ──
+
+// ── COMPARATIVO POR CLIENTE ──
+let _barCompCli = null;
+function renderCompClientes(){
+  if(!CLI_26||!CLI_25) return;
+  const fmtR2 = v=>'R$ '+Math.abs(v).toLocaleString('pt-BR',{minimumFractionDigits:2});
+
+  // Totais por cliente em cada ano
+  const tot26={}, tot25={};
+  Object.entries(CLI_26).forEach(([c,mv])=>{tot26[c]=Object.values(mv).reduce((a,v)=>a+v,0);});
+  Object.entries(CLI_25).forEach(([c,mv])=>{tot25[c]=Object.values(mv).reduce((a,v)=>a+v,0);});
+
+  // União de todos os clientes
+  const clientes=[...new Set([...Object.keys(tot26),...Object.keys(tot25)])]
+    .filter(c=>(tot26[c]||0)+(tot25[c]||0)>0)
+    .sort((a,b)=>(tot26[b]||0)-(tot26[a]||0));
+
+  const grand26=clientes.reduce((s,c)=>s+(tot26[c]||0),0);
+  const grand25=clientes.reduce((s,c)=>s+(tot25[c]||0),0);
+  const grandVar=grand26-grand25;
+  const grandPct=grand25?((grandVar/grand25)*100):0;
+
+  // Tabela
+  document.getElementById('compCliBody').innerHTML=clientes.map((c,i)=>{
+    const v26=tot26[c]||0, v25=tot25[c]||0;
+    const varR=v26-v25, varP=v25?(varR/v25*100):null;
+    const up=varR>=0;
+    const pct=varP!==null?(up?'▲ ':'▼ ')+Math.abs(varP).toFixed(1)+'%':'—';
+    const bar26w=grand26?(v26/grand26*120).toFixed(0):0;
+    const bar25w=grand25?(v25/grand25*120).toFixed(0):0;
+    return`<tr style="${i===0?'background:rgba(255,107,0,0.04);':''}">
+      <td style="font-weight:700">${c}</td>
+      <td class="num" style="color:var(--muted)">${v25?fmtR2(v25):'—'}</td>
+      <td class="num" style="color:#8a3200">${v26?fmtR2(v26):'—'}</td>
+      <td class="num ${up?'up':'down'}">${up?'+':'-'} ${fmtR2(Math.abs(varR))}</td>
+      <td class="num" style="font-weight:800;color:${up?'var(--green)':'var(--red)'}">${pct}</td>
+      <td><div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="height:5px;width:${bar26w}px;background:#FF6B00;border-radius:3px;"></div>
+        <div style="height:5px;width:${bar25w}px;background:#C8C8C8;border-radius:3px;"></div>
+      </div></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('compCliFoot').innerHTML=`<tr>
+    <td style="font-weight:900">TOTAL</td>
+    <td class="num" style="font-weight:900;color:var(--muted)">${fmtR2(grand25)}</td>
+    <td class="num" style="font-weight:900;color:#8a3200">${fmtR2(grand26)}</td>
+    <td class="num ${grandVar>=0?'up':'down'}" style="font-weight:900">${grandVar>=0?'+':'-'} ${fmtR2(Math.abs(grandVar))}</td>
+    <td class="num" style="font-weight:900;color:${grandVar>=0?'var(--green)':'var(--red))'}">${grandVar>=0?'▲':'▼'} ${Math.abs(grandPct).toFixed(1)}%</td>
+    <td></td>
+  </tr>`;
+
+  // Gráfico (top 10)
+  const top=clientes.slice(0,10);
+  if(_barCompCli){_barCompCli.destroy();_barCompCli=null;}
+  _barCompCli=new Chart(document.getElementById('barCompCli'),{type:'bar',
+    data:{labels:top,datasets:[
+      {label:'2025',data:top.map(c=>tot25[c]||0),backgroundColor:'rgba(200,200,200,0.7)',borderColor:'#C8C8C8',borderWidth:1.5,borderRadius:6,borderSkipped:false},
+      {label:'2026',data:top.map(c=>tot26[c]||0),backgroundColor:'rgba(255,107,0,0.85)',borderColor:'#FF6B00',borderWidth:1.5,borderRadius:6,borderSkipped:false},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{color:B,font:{size:12,weight:'700'},padding:16}},
+        tooltip:{...TT,callbacks:{label:c=>c.dataset.label+': R$ '+c.raw.toLocaleString('pt-BR',{minimumFractionDigits:2})}}},
+      scales:{
+        x:{grid:{color:'#EBEBEB'},ticks:{color:B,font:{weight:'600'},maxRotation:30}},
+        y:{grid:{color:'#EBEBEB'},ticks:{color:MUTED,callback:v=>'R$ '+(v/1e6).toFixed(1)+'Mi'}}
+      }
+    }
+  });
+}
+
+function compCliView(el,view){
+  document.querySelectorAll('#compCliTabs .ftab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('compCliTabela').style.display=view==='tabela'?'block':'none';
+  document.getElementById('compCliGrafico').style.display=view==='grafico'?'block':'none';
+  if(view==='grafico'&&!_barCompCli) renderCompClientes();
+}
 
 // ══════════════════════════════════════════════════════════
 // FUNÇÕES GLOBAIS — precisam estar no escopo global para que
