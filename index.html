@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 13/07/2026 15:02</div>
+    <div class="update-badge">✓ Atualizado 13/07/2026 15:49</div>
     <div class="pill"><strong>166</strong> notas · Julho</div>
   </div>
 </div>
@@ -810,7 +810,7 @@ function removerUser(login){
     </div>
     <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
     <table style="min-width:600px;">
-      <thead><tr><th>Mês</th><th>NF</th><th>Cliente</th><th>Observação</th><th>Tipo</th><th class="num">Valor (R$)</th><th>Vencimento</th><th>Status</th></tr></thead>
+      <thead><tr><th>Mês</th><th>NF</th><th>Cliente</th><th>Job</th><th>Observação</th><th>Tipo</th><th class="num">Valor (R$)</th><th>Vencimento</th><th>Fechamento</th><th>Status</th></tr></thead>
       <tbody id="notasBody"></tbody>
       <tfoot id="notasFoot" style="background:#FFFBEA;border-top:2px solid var(--yellow);"></tfoot>
     </table>
@@ -890,7 +890,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 15:02</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 15:49</strong></div>
 </div>
 
 <script>
@@ -1293,11 +1293,12 @@ function filterNotas(el,mes){
       ?`<span class="sp sp-venc">⚠️ VENCIDO</span>`
       :`<span class="sp ${sc}">${r.status}</span>`;
     const rowBg=vencido?'background:rgba(239,68,68,0.04);':'';
-    return`<tr style="${rowBg}"><td>${r.mes}</td><td class="td-dim">${r.nf}</td><td style="font-weight:700">${r.cliente}</td><td class="td-dim">${r.obs}</td><td class="td-dim">${r.tipo}</td><td class="num td-val">${fmtR(r.valor)}</td><td class="td-dim" style="${vencido?'color:#EF4444;font-weight:700;':''}">${ven}</td><td>${statusHtml}</td></tr>`;
+    const fec=r.fechamento?r.fechamento.split('-').reverse().join('/'):'—';
+    return`<tr style="${rowBg}"><td>${r.mes}</td><td class="td-dim">${r.nf}</td><td style="font-weight:700">${r.cliente}</td><td class="td-dim">${r.job||'—'}</td><td class="td-dim">${r.obs}</td><td class="td-dim">${r.tipo}</td><td class="num td-val">${fmtR(r.valor)}</td><td class="td-dim" style="${vencido?'color:#EF4444;font-weight:700;':''}">${ven}</td><td class="td-dim">${fec}</td><td>${statusHtml}</td></tr>`;
   }).join('');
   const total=rows.reduce((a,r)=>a+r.valor,0);
   const qtd=rows.length;
-  document.getElementById('notasFoot').innerHTML='<tr><td colspan="5" style="font-weight:900;font-size:13px;padding:12px 14px;">TOTAL — '+qtd+' nota'+(qtd!==1?'s':'')+'</td><td class="num" style="font-weight:900;font-size:15px;color:#8a3200;padding:12px 14px;">'+fmtR(total)+'</td><td></td><td></td></tr>';
+  document.getElementById('notasFoot').innerHTML='<tr><td colspan="7" style="font-weight:900;font-size:13px;padding:12px 14px;">TOTAL — '+qtd+' nota'+(qtd!==1?'s':'')+'</td><td class="num" style="font-weight:900;font-size:15px;color:#8a3200;padding:12px 14px;">'+fmtR(total)+'</td><td></td><td></td><td></td></tr>';
 }
 
 function imprimirNotas(){
@@ -1440,11 +1441,12 @@ function exportarExcel(){
   const total=rows.reduce((a,r)=>a+r.valor,0);
   const SEP='\t', NL='\n';
   let csv='﻿';
-  csv+='Mes'+SEP+'NF'+SEP+'Cliente'+SEP+'Observacao'+SEP+'Tipo'+SEP+'Valor (R$)'+SEP+'Vencimento'+SEP+'Status'+NL;
+  csv+='Mes'+SEP+'NF'+SEP+'Cliente'+SEP+'Job'+SEP+'Observacao'+SEP+'Tipo'+SEP+'Valor (R$)'+SEP+'Vencimento'+SEP+'Fechamento'+SEP+'Status'+NL;
   rows.forEach(r=>{
     const v=r.valor.toFixed(2).replace('.',',');
     var venE=r.vencimento?r.vencimento.split('-').reverse().join('/'):'';
-    csv+=r.mes+SEP+r.nf+SEP+r.cliente+SEP+r.obs+SEP+r.tipo+SEP+v+SEP+venE+SEP+r.status+NL;
+    var fecE=r.fechamento?r.fechamento.split('-').reverse().join('/'):'';
+    csv+=r.mes+SEP+r.nf+SEP+r.cliente+SEP+(r.job||'')+SEP+r.obs+SEP+r.tipo+SEP+v+SEP+venE+SEP+fecE+SEP+r.status+NL;
   });
   csv+=SEP+'TOTAL'+SEP+SEP+SEP+SEP+total.toFixed(2).replace('.',',')+SEP+NL;
   const blob=new Blob([csv],{type:'text/tab-separated-values;charset=utf-8'});
