@@ -587,7 +587,7 @@ function removerUser(login){
     </div>
   </div>
   <div class="header-right" id="headerRight">
-    <div class="update-badge">✓ Atualizado 13/07/2026 17:23</div>
+    <div class="update-badge">✓ Atualizado 13/07/2026 18:09</div>
     <div class="pill"><strong>166</strong> notas · Julho</div>
   </div>
 </div>
@@ -910,6 +910,69 @@ function removerUser(login){
       <div class="kpi-val" id="resKpiMelhorJob" style="font-size:13px;">—</div>
       <span class="kpi-badge b-pos" id="resKpiMelhorJobVal">—</span>
     </div>
+    <div class="kpi" style="border-top:3px solid var(--yellow);">
+      <span class="kpi-icon">📊</span>
+      <div class="kpi-label">Rentabilidade Média</div>
+      <div class="kpi-val" id="resKpiRentMedia" style="color:var(--yellow);">—</div>
+      <span class="kpi-badge" id="resKpiCusto">—</span>
+    </div>
+  </div>
+
+  <!-- Analytics: Charts + Tabelas Resumo -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Faturamento vs Lucro por Mês</div>
+      <div class="card-sub">Evolução mensal de receita e lucro</div>
+      <canvas id="resChartBarMes" height="200"></canvas>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Rentabilidade % por Mês</div>
+      <div class="card-sub">Margem de lucro mensal</div>
+      <canvas id="resChartLineMes" height="200"></canvas>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Lucro por Cliente</div>
+      <div class="card-sub">Resultado líquido por cliente</div>
+      <canvas id="resChartBarCli" height="200"></canvas>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Rentabilidade por Cliente (%)</div>
+      <div class="card-sub">Margem de lucro por cliente</div>
+      <canvas id="resChartRentCli" height="200"></canvas>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Resultado por Cliente</div>
+      <div class="card-sub">Faturado, Custo, Lucro e Rentabilidade</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="border-bottom:2px solid var(--yellow);">
+          <th style="padding:8px 6px;text-align:left;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Cliente</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Faturado</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Custo</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Lucro</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Rent.%</th>
+        </tr></thead>
+        <tbody id="resTabCliBody"></tbody>
+        <tfoot id="resTabCliFoot" style="border-top:2px solid var(--yellow);background:#FFF8F4;font-weight:700;color:var(--yellow);font-size:12px;"></tfoot>
+      </table>
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="card-title">● Resultado por Mês</div>
+      <div class="card-sub">Resumo mensal consolidado</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="border-bottom:2px solid var(--yellow);">
+          <th style="padding:8px 6px;text-align:left;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Mês</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Faturado</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Custo</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Lucro</th>
+          <th style="padding:8px 6px;text-align:right;font-size:10px;font-weight:700;color:#6B7280;text-transform:uppercase;letter-spacing:.6px;">Rent.%</th>
+        </tr></thead>
+        <tbody id="resTabMesBody"></tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Filtro cards de mês -->
@@ -955,7 +1018,7 @@ function removerUser(login){
     <img src="logo.png" alt="OGGI LIVE" style="max-height:24px;width:auto;">
     <span>OGGI LIVE · Dashboard Financeiro · Confidencial</span>
   </div>
-  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 17:23</strong></div>
+  <div>Gerado automaticamente em <strong style="color:var(--black)">13/07/2026 18:09</strong></div>
 </div>
 
 <script>
@@ -971,6 +1034,7 @@ let RECEBIDO,EM_ABERTO,TOTAL_26,CLI_26,CLI_25,NOTAS_26,NOTAS_25;
 let NOTAS=[], anoNotasAtivo=2026;
 let RESULTADO_DATA=[{"cliente": "LACTALIS", "job": "LT_051_SUPER_BAHIA", "mes": "JANEIRO", "venda": 133609.04, "custo": 90953.85, "lucro": 42655.19, "rentabilidade": 0.3193}, {"cliente": "LACTALIS", "job": "LT_052_ENCONTRO DE LÍDERES 2025", "mes": "JANEIRO", "venda": 1582476.83, "custo": 1297208.45, "lucro": 285268.38, "rentabilidade": 0.1803}, {"cliente": "LACTALIS", "job": "LT_059 ATIVAÇÃO DE LANÇAMENTO", "mes": "JANEIRO", "venda": 39066.57, "custo": 24430.86, "lucro": 14635.71, "rentabilidade": 0.3746}, {"cliente": "LACTALIS", "job": "LT_062 LOCAÇÃO SALAS", "mes": "JANEIRO", "venda": 33608.89, "custo": 30762.16, "lucro": 2846.73, "rentabilidade": 0.0847}, {"cliente": "LACTALIS", "job": "LT_071_PRODUÇÃO_GRÁFICA", "mes": "JANEIRO", "venda": 3469.18, "custo": 1310.33, "lucro": 2158.85, "rentabilidade": 0.6223}, {"cliente": "LENOVO", "job": "LE_179_MOTOROLA_MINI_COQUETEL_JK", "mes": "JANEIRO", "venda": 10545.96, "custo": 6945.1, "lucro": 3600.86, "rentabilidade": 0.3414}, {"cliente": "LENOVO", "job": "LE_183_LENOVO_E_EBDI", "mes": "JANEIRO", "venda": 27300.0, "custo": 21695.63, "lucro": 5604.37, "rentabilidade": 0.2053}, {"cliente": "LENOVO", "job": "LE_190_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 13366.89, "custo": 5688.64, "lucro": 7678.25, "rentabilidade": 0.5744}, {"cliente": "LENOVO", "job": "LE_191_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 11737.23, "custo": 5856.49, "lucro": 5880.74, "rentabilidade": 0.501}, {"cliente": "LENOVO", "job": "LE_192_VISITA FÁBRICA", "mes": "JANEIRO", "venda": 12099.37, "custo": 6560.16, "lucro": 5539.21, "rentabilidade": 0.4578}, {"cliente": "LENOVO", "job": "LE_207 ARROW PRIVATE", "mes": "JANEIRO", "venda": 264248.91, "custo": 222237.13, "lucro": 42011.78, "rentabilidade": 0.159}, {"cliente": "LENOVO", "job": "LE_214_CAFÉ_TECH_WORLD", "mes": "JANEIRO", "venda": 4961.21, "custo": 3710.58, "lucro": 1250.63, "rentabilidade": 0.2521}, {"cliente": "LENOVO", "job": "LE_221_JOGOS _DA_PRIMAVERA", "mes": "JANEIRO", "venda": 8652.02, "custo": 6822.8, "lucro": 1829.22, "rentabilidade": 0.2114}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_39_ PERSONALIZAÇÃO_RETROZINHA_PARA_MAGALU", "mes": "JANEIRO", "venda": 125496.79, "custo": 93830.57, "lucro": 31666.22, "rentabilidade": 0.2523}, {"cliente": "BOWE", "job": "BOWE_001_EVENTO_DE_RELACIONAMENTO", "mes": "FEVEREIRO", "venda": 33842.03, "custo": 30080.23, "lucro": 3761.8, "rentabilidade": 0.1112}, {"cliente": "LACTALIS", "job": "LT_049_CONVENÇÃO_ITAMBÉ_2026", "mes": "FEVEREIRO", "venda": 1454803.9, "custo": 1409482.96, "lucro": 45320.94, "rentabilidade": 0.0312}, {"cliente": "LACTALIS", "job": "LT_050_CONVENÇÃO_LDB_2026", "mes": "FEVEREIRO", "venda": 1909694.02, "custo": 909956.52, "lucro": 999737.5, "rentabilidade": 0.5235}, {"cliente": "LACTALIS", "job": "LT_069_CONVENÇÃO_FOOD_2026", "mes": "FEVEREIRO", "venda": 251519.25, "custo": 167995.69, "lucro": 83523.56, "rentabilidade": 0.3321}, {"cliente": "LENOVO", "job": "LE_211_HAPPY_HOUR_SP_E_IDU", "mes": "FEVEREIRO", "venda": 52725.0, "custo": 32330.85, "lucro": 20394.15, "rentabilidade": 0.3868}, {"cliente": "LENOVO", "job": "LE_218_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 8726.24, "lucro": 4676.37, "rentabilidade": 0.3489}, {"cliente": "LENOVO", "job": "LE_219_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13893.08, "custo": 8873.8, "lucro": 5019.28, "rentabilidade": 0.3613}, {"cliente": "LENOVO", "job": "LE_227_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 6098.52, "lucro": 7304.09, "rentabilidade": 0.545}, {"cliente": "LENOVO", "job": "LE_228_VISITA_A_FABRICA", "mes": "FEVEREIRO", "venda": 13402.61, "custo": 7502.41, "lucro": 5900.2, "rentabilidade": 0.4402}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_028_WHUB_2026", "mes": "FEVEREIRO", "venda": 8645935.55, "custo": 7692879.1, "lucro": 953056.45, "rentabilidade": 0.1102}, {"cliente": "LACTALIS", "job": "LT_056_CONVENÇÃO_DPA_2026", "mes": "MARÇO", "venda": 2896045.07, "custo": 2942642.77, "lucro": -46597.7, "rentabilidade": -0.0161}, {"cliente": "LENOVO", "job": "LE_224_ARROW_SP_E_BH", "mes": "MARÇO", "venda": 275727.51, "custo": 197393.37, "lucro": 78334.14, "rentabilidade": 0.2841}, {"cliente": "LENOVO", "job": "LE_225_CIO_BRASIL", "mes": "MARÇO", "venda": 78337.24, "custo": 57749.5, "lucro": 20587.74, "rentabilidade": 0.2628}, {"cliente": "LENOVO", "job": "LE_229_VISITA_A_FÁBRICA", "mes": "MARÇO", "venda": 17732.01, "custo": 14167.37, "lucro": 3564.64, "rentabilidade": 0.201}, {"cliente": "LENOVO", "job": "LE_230_BRINDES_CAMPANHA_INCENTIVO_AMD", "mes": "MARÇO", "venda": 52103.4, "custo": 35113.9, "lucro": 16989.5, "rentabilidade": 0.3261}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_047_EVENTO_SUPRIMENTOS", "mes": "MARÇO", "venda": 119358.88, "custo": 88726.19, "lucro": 30632.7, "rentabilidade": 0.2566}, {"cliente": "LENOVO", "job": "LE_217_TECH_WORLD", "mes": "ABRIL", "venda": 2100462.09, "custo": 1467334.52, "lucro": 633127.57, "rentabilidade": 0.3014}, {"cliente": "LENOVO", "job": "LE_233_SUMMIT_AGRO", "mes": "ABRIL", "venda": 46010.54, "custo": 30766.8, "lucro": 15243.74, "rentabilidade": 0.3313}, {"cliente": "LENOVO", "job": "LE_234_ESTANDE_MAGALU", "mes": "ABRIL", "venda": 180939.49, "custo": 136706.28, "lucro": 44233.21, "rentabilidade": 0.2445}, {"cliente": "LENOVO", "job": "LE_238_VISITA_A_FÁBRICA", "mes": "ABRIL", "venda": 10433.0, "custo": 5227.55, "lucro": 5205.45, "rentabilidade": 0.4989}, {"cliente": "LENOVO", "job": "LE_240_KICKOFF_LAPA_E_LBC", "mes": "ABRIL", "venda": 6474.89, "custo": 4644.28, "lucro": 1830.61, "rentabilidade": 0.2827}, {"cliente": "LACTALIS", "job": "LT_073_LOCAÇÃO_SALAS", "mes": "ABRIL", "venda": 39841.11, "custo": 36644.56, "lucro": 3196.55, "rentabilidade": 0.0802}, {"cliente": "WHIRLPOOL S.A", "job": "WHP_049_ESTANDE_MAGALU", "mes": "ABRIL", "venda": 409282.26, "custo": 348982.14, "lucro": 60300.12, "rentabilidade": 0.1473}, {"cliente": "LENOVO", "job": "LE_235_MINI_BOLA", "mes": "MAIO", "venda": 72555.31, "custo": 53781.42, "lucro": 18773.89, "rentabilidade": 0.2588}, {"cliente": "LENOVO", "job": "LE_243_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 11586.53, "custo": 6215.86, "lucro": 5370.67, "rentabilidade": 0.4635}, {"cliente": "LENOVO", "job": "LE_244_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 13955.68, "custo": 6086.61, "lucro": 7869.07, "rentabilidade": 0.5639}, {"cliente": "LENOVO", "job": "LE_245_VISITA_A_FÁBRICA", "mes": "MAIO", "venda": 14614.87, "custo": 7352.73, "lucro": 7262.14, "rentabilidade": 0.4969}, {"cliente": "LENOVO", "job": "LE_248_ONE_SUPPLY_CHAIN_FORUM_2026", "mes": "MAIO", "venda": 10256.32, "custo": 8034.66, "lucro": 2221.66, "rentabilidade": 0.2166}, {"cliente": "LACTALIS", "job": "LT_061_CAMPANHA_DE_INCENTIVO_BUENOS_AIRES", "mes": "MAIO", "venda": 416358.26, "custo": 283315.58, "lucro": 133042.68, "rentabilidade": 0.3195}, {"cliente": "LACTALIS", "job": "LT_072_TRADE_SHOW_2026", "mes": "MAIO", "venda": 333996.06, "custo": 274531.14, "lucro": 59464.92, "rentabilidade": 0.178}, {"cliente": "LACTALIS", "job": "LT_074_APRAS", "mes": "MAIO", "venda": 352621.76, "custo": 270684.0, "lucro": 81937.76, "rentabilidade": 0.2324}, {"cliente": "MOTOROLA", "job": "MOT_007_SÃO_PAULO_INNOVATION_WEEK_2026", "mes": "MAIO", "venda": 156885.24, "custo": 111872.67, "lucro": 45012.57, "rentabilidade": 0.2869}, {"cliente": "JOÃO CORDEIRO", "job": "JOA_001_ACCOUNTABILITY SUMMIT", "mes": "MAIO", "venda": 124350.82, "custo": 69979.34, "lucro": 54371.48, "rentabilidade": 0.4372}];
 let _resFilter={mes:'__todos__',cli:''};
+let _resChartBarMes=null,_resChartLineMes=null,_resChartBarCli=null,_resChartRentCli=null;
 let _chartsInit=false;
 // ── Estado global das abas interativas (precisa ser global para onclick funcionar) ──
 let DB=null, anoAtivo='2026', viewAtiva='tabela', stackedChart=null;
@@ -1549,6 +1613,7 @@ function renderResultado(){
   }
 
   _renderResTabela();
+  _renderResAnalytics();
 }
 
 function _mkResCard(label,totais,fmtV,fmtP,mes,ativo){
@@ -1600,6 +1665,8 @@ function _renderResTabela(){
   document.getElementById('resKpiRent').textContent='Rent. '+fmtP(rentMed);
   document.getElementById('resKpiMelhorJob').textContent=melhor?melhor.job:'—';
   document.getElementById('resKpiMelhorJobVal').textContent=melhor?fmtV(melhor.lucro):'—';
+  document.getElementById('resKpiRentMedia').textContent=fmtP(rentMed);
+  document.getElementById('resKpiCusto').textContent='Custo '+fmtV(rows.reduce((s,r)=>s+r.custo,0));
 
   // Tabela
   document.getElementById('resBody').innerHTML=rows.map((r,i)=>{
@@ -1627,6 +1694,118 @@ function _renderResTabela(){
 function filtrarResultadoCli(cli){
   _resFilter.cli=cli;
   _renderResTabela();
+}
+
+function _renderResAnalytics(){
+  const dados=RESULTADO_DATA;
+  if(!dados||!dados.length) return;
+  const MESES_ORDER=['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'];
+  const MES_LABEL={'JANEIRO':'Jan','FEVEREIRO':'Fev','MARÇO':'Mar','ABRIL':'Abr','MAIO':'Mai','JUNHO':'Jun','JULHO':'Jul','AGOSTO':'Ago','SETEMBRO':'Set','OUTUBRO':'Out','NOVEMBRO':'Nov','DEZEMBRO':'Dez'};
+  const fmtV=v=>'R$ '+Math.abs(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const fmtVk=v=>{const abs=Math.abs(v);if(abs>=1e6)return'R$'+(abs/1e6).toFixed(1)+'Mi';if(abs>=1e3)return'R$'+(abs/1e3).toFixed(0)+'k';return'R$'+abs.toFixed(0);};
+  const fmtP=v=>(v*100).toFixed(1)+'%';
+
+  // Agregar por mês
+  const byMes={};
+  dados.forEach(r=>{
+    if(!byMes[r.mes]) byMes[r.mes]={venda:0,custo:0,lucro:0};
+    byMes[r.mes].venda+=r.venda; byMes[r.mes].custo+=r.custo; byMes[r.mes].lucro+=r.lucro;
+  });
+  const meses=[...MESES_ORDER.filter(m=>byMes[m])];
+  const mesLabels=meses.map(m=>MES_LABEL[m]||m.slice(0,3));
+  const mesVenda=meses.map(m=>byMes[m].venda);
+  const mesLucro=meses.map(m=>byMes[m].lucro);
+  const mesRent=meses.map(m=>byMes[m].venda?byMes[m].lucro/byMes[m].venda*100:0);
+
+  // Agregar por cliente
+  const byCli={};
+  dados.forEach(r=>{
+    if(!byCli[r.cliente]) byCli[r.cliente]={venda:0,custo:0,lucro:0};
+    byCli[r.cliente].venda+=r.venda; byCli[r.cliente].custo+=r.custo; byCli[r.cliente].lucro+=r.lucro;
+  });
+  const clis=Object.keys(byCli).sort((a,b)=>byCli[b].lucro-byCli[a].lucro);
+  const cliLabels=clis.map(c=>c.length>14?c.slice(0,13)+'…':c);
+  const cliLucro=clis.map(c=>byCli[c].lucro);
+  const cliRent=clis.map(c=>byCli[c].venda?byCli[c].lucro/byCli[c].venda*100:0);
+
+  const chartOpts={responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>fmtV(ctx.raw)},...TT}}};
+
+  // ── Chart 1: Faturamento vs Lucro por Mês (bar) ──
+  if(_resChartBarMes){ _resChartBarMes.destroy(); _resChartBarMes=null; }
+  const c1=document.getElementById('resChartBarMes');
+  if(c1) _resChartBarMes=new Chart(c1,{type:'bar',data:{
+    labels:mesLabels,
+    datasets:[
+      {label:'Faturado',data:mesVenda,backgroundColor:'rgba(255,107,0,0.85)',borderRadius:4,barPercentage:.5},
+      {label:'Lucro',data:mesLucro,backgroundColor:'rgba(26,174,111,0.85)',borderRadius:4,barPercentage:.5}
+    ]
+  },options:{...chartOpts,plugins:{legend:{display:true,labels:{color:'#282828',font:{size:11}}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+fmtV(ctx.raw)},...TT}},scales:{x:{grid:{display:false},ticks:{color:'#6B7280',font:{size:11}}},y:{grid:{color:'#F0F0F0'},ticks:{color:'#6B7280',font:{size:10},callback:v=>fmtVk(v)}}}}});
+
+  // ── Chart 2: Rentabilidade % por Mês (line) ──
+  if(_resChartLineMes){ _resChartLineMes.destroy(); _resChartLineMes=null; }
+  const c2=document.getElementById('resChartLineMes');
+  if(c2) _resChartLineMes=new Chart(c2,{type:'line',data:{
+    labels:mesLabels,
+    datasets:[{label:'Rent.%',data:mesRent,borderColor:'#FF6B00',backgroundColor:'rgba(255,107,0,0.08)',tension:.4,fill:true,pointBackgroundColor:'#FF6B00',pointRadius:5}]
+  },options:{...chartOpts,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.toFixed(1)+'%'},...TT}},scales:{x:{grid:{display:false},ticks:{color:'#6B7280',font:{size:11}}},y:{grid:{color:'#F0F0F0'},ticks:{color:'#6B7280',font:{size:10},callback:v=>v.toFixed(0)+'%'}}}}});
+
+  // ── Chart 3: Lucro por Cliente (bar horizontal) ──
+  if(_resChartBarCli){ _resChartBarCli.destroy(); _resChartBarCli=null; }
+  const c3=document.getElementById('resChartBarCli');
+  if(c3) _resChartBarCli=new Chart(c3,{type:'bar',data:{
+    labels:cliLabels,
+    datasets:[{data:cliLucro,backgroundColor:cliLucro.map(v=>v>=0?'rgba(26,174,111,0.85)':'rgba(224,59,59,0.85)'),borderRadius:4,barPercentage:.55}]
+  },options:{...chartOpts,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>fmtV(ctx.raw)},...TT}},scales:{x:{grid:{display:false},ticks:{color:'#6B7280',font:{size:9},maxRotation:30}},y:{grid:{color:'#F0F0F0'},ticks:{color:'#6B7280',font:{size:10},callback:v=>fmtVk(v)}}}}});
+
+  // ── Chart 4: Rentabilidade % por Cliente (bar) ──
+  if(_resChartRentCli){ _resChartRentCli.destroy(); _resChartRentCli=null; }
+  const c4=document.getElementById('resChartRentCli');
+  if(c4) _resChartRentCli=new Chart(c4,{type:'bar',data:{
+    labels:cliLabels,
+    datasets:[{data:cliRent,backgroundColor:cliRent.map(v=>v>=0?'rgba(255,107,0,0.85)':'rgba(224,59,59,0.85)'),borderRadius:4,barPercentage:.55}]
+  },options:{...chartOpts,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.toFixed(1)+'%'},...TT}},scales:{x:{grid:{display:false},ticks:{color:'#6B7280',font:{size:9},maxRotation:30}},y:{grid:{color:'#F0F0F0'},ticks:{color:'#6B7280',font:{size:10},callback:v=>v.toFixed(0)+'%'}}}}});
+
+  // ── Tabela por Cliente ──
+  const cliTot={venda:0,custo:0,lucro:0};
+  const cliBody=document.getElementById('resTabCliBody');
+  if(cliBody) cliBody.innerHTML=clis.map((c,i)=>{
+    const d=byCli[c];
+    const up=d.lucro>=0;
+    const r=d.venda?d.lucro/d.venda:0;
+    cliTot.venda+=d.venda; cliTot.custo+=d.custo; cliTot.lucro+=d.lucro;
+    return`<tr style="border-bottom:1px solid var(--border);background:${i%2===0?'#fff':'#fafafa'};">
+      <td style="padding:8px 6px;font-weight:700;font-size:11px;">${c}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">${fmtV(d.venda)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;color:#6B7280;">${fmtV(d.custo)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;font-weight:700;color:${up?'var(--green)':'var(--red)'};">${fmtV(d.lucro)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;font-weight:700;color:${up?'var(--green)':'var(--red)')};">${up?'▲':'▼'} ${Math.abs(r*100).toFixed(1)}%</td>
+    </tr>`;
+  }).join('');
+  const cliFoot=document.getElementById('resTabCliFoot');
+  if(cliFoot){
+    const totR=cliTot.venda?cliTot.lucro/cliTot.venda:0;
+    cliFoot.innerHTML=`<tr><td style="padding:8px 6px;font-size:11px;">TOTAL</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">${fmtV(cliTot.venda)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">${fmtV(cliTot.custo)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">${fmtV(cliTot.lucro)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">▲ ${(totR*100).toFixed(1)}%</td>
+    </tr>`;
+  }
+
+  // ── Tabela por Mês ──
+  const mesBody=document.getElementById('resTabMesBody');
+  if(mesBody) mesBody.innerHTML=meses.map((m,i)=>{
+    const d=byMes[m];
+    const up=d.lucro>=0;
+    const r=d.venda?d.lucro/d.venda:0;
+    return`<tr style="border-bottom:1px solid var(--border);background:${i%2===0?'#fff':'#fafafa'};">
+      <td style="padding:8px 6px;font-weight:700;font-size:11px;">${MES_LABEL[m]||m}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;">${fmtV(d.venda)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;color:#6B7280;">${fmtV(d.custo)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;font-weight:700;color:${up?'var(--green)':'var(--red)'};">${fmtV(d.lucro)}</td>
+      <td style="padding:8px 6px;text-align:right;font-size:11px;font-weight:700;color:${up?'var(--green)':'var(--red)')};">${up?'▲':'▼'} ${Math.abs(r*100).toFixed(1)}%</td>
+    </tr>`;
+  }).join('');
 }
 
 function exportarResultado(){
